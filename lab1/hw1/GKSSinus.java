@@ -15,7 +15,7 @@ public class GKSSinus extends Applet {
     GKS gks = new GKS(g, 0, 6.28, -1, 1, getWidth(), getHeight());
     gks.postaviBoju(Color.black);
     
-    // draw axis
+    //koordinatne osi
     gks.postaviNa(0, 0);
     gks.linijaDo(gks.w, 0);
 

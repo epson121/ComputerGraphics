@@ -12,10 +12,10 @@ public class GKSParabola extends Applet {
 
   @Override
   public void paint(Graphics g) {
-    GKS gks = new GKS(g, -5, 5, -5, 5, 500, 500);
+    GKS gks = new GKS(g, -5, 5, -5, 5, getWidth(), getHeight());
     gks.postaviBoju(Color.black);
     
-    //koordinatne osi
+    // draw axis
     gks.postaviNa(-5, 0);
     gks.linijaDo(5, 0);
     gks.postaviNa(0, 5);

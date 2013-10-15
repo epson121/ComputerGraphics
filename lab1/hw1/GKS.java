@@ -11,13 +11,13 @@ public class GKS extends Applet {
 	private double sx, px, sy, py;
 	public int w, h;
 
-	/**
-	* Konstruktorom GKS(Graphics g, double xmin, double xmax, double ymin, 
-	* double ymax, int xsize, int ysize) zadaje se raspon koordinata globalnog 
-	* koordinatnog sustava koji će biti prikazan u prozoru (appletu) 
-	* veličine xsize, ysize (podatak o veličini prozora nužan je da bi 
-	* se mogle izračunati odgovarajuće transformacije iz globalnih 
-	* koordinata u koordinate prozora).
+	/*
+	Konstruktorom GKS(Graphics g, double xmin, double xmax, double ymin, 
+	double ymax, int xsize, int ysize) zadaje se raspon koordinata globalnog 
+	koordinatnog sustava koji će biti prikazan u prozoru (appletu) 
+	veličine xsize, ysize (podatak o veličini prozora nužan je da bi 
+	se mogle izračunati odgovarajuće transformacije iz globalnih 
+	koordinata u koordinate prozora).
 	*/
 	public GKS(Graphics g, double xmin, double xmax, double ymin, 
 				double ymax, int xsize, int ysize) {
@@ -31,11 +31,13 @@ public class GKS extends Applet {
 	}
 
 	public void postaviNa(double x, double y) {
+		//transform here
 		this.x = x;
 		this.y = y;
 	}
 
 	public void linijaDo(double x, double y) {
+		//transform before
 		this.g.drawLine(transformX(this.x), transformY(this.y), 
 					transformX(x), transformY(y));
 	}
@@ -44,16 +46,10 @@ public class GKS extends Applet {
 		this.g.setColor(c);
 	}
 
-	/**
-	* convert to computer coordinate point
-	*/
 	private int transformX(double x) {
 		return (int) (this.sx * x + px);
 	}
 
-	/** 
-	* convert to computer coordinate point
-	*/
 	private int transformY(double y) {
 		return  (int) (-(this.sy * y) + py);
 	}
