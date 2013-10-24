@@ -18,7 +18,7 @@ public class GKS_zrcaljenje extends Applet {
     int k = 3;
     int l = 6;
     double alfa = Math.toDegrees(Math.atan(k));
-
+    System.out.println(alfa);
     MT2D mt1 = new MT2D();
     MT2D mt2 = new MT2D();
     gks.postaviBoju(Color.red);
