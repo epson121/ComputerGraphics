@@ -47,6 +47,32 @@ public class MT3D {
 		m[1][1] = Math.cos(kut);
 	}
 
+	public void rotiraj(double x1, double y1, double z1, 
+						double x2, double y2, double z2, 
+						double kut) {
+
+		MT3D m1 = new MT3D();
+	    m1.pomakni(-x1, -y1, -z1);
+	    this.rotirajX(kut);
+	    this.mult(m1);
+	    m1.rotirajY(90-kut);
+	    m1.mult(this);
+	    this.rotirajZ(kut);
+	    this.mult(m1);
+	    m1.rotirajY(kut);
+	    m1.mult(this);
+	    this.rotirajX(90+kut);
+	    this.mult(m1);
+	    m1.pomakni(x2, y2, z2);
+	    m1.mult(this);
+	    this.m = m1.getM();
+	     for (int i = 0; i < this.m.length; i++) {
+    	 	for (int j = 0; j < this.m.length; j++) {
+	    		System.out.println(this.m[i][j]);
+	    	}
+	    }
+	}
+
 	public void identitet() {
 		m[0][0] = 1;
 		m[0][1] = 0;
