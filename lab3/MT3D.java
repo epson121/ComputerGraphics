@@ -1,7 +1,8 @@
 public class MT3D {
 
 	private double m[][]= new double[4][4];
-
+	private double a, b, c, d;
+	private double[] unitVector = new double[3];
 	public MT3D() {
 		identitet();
 	}
@@ -50,20 +51,20 @@ public class MT3D {
 	public void rotiraj(double x1, double y1, double z1, 
 						double x2, double y2, double z2, 
 						double kut) {
-
+		calcCoefficients(x1, y1, z1, x2, y2, z2);
 		MT3D m1 = new MT3D();
 	    m1.pomakni(-x1, -y1, -z1);
-	    this.rotirajX(kut);
+	    this.rotirajX(Math.asin(this.b / this.d));
 	    this.mult(m1);
-	    m1.rotirajY(90-kut);
+	    m1.rotirajY(-Math.asin(this.a));
 	    m1.mult(this);
 	    this.rotirajZ(kut);
 	    this.mult(m1);
-	    m1.rotirajY(kut);
+	    m1.rotirajY(Math.asin(this.a));
 	    m1.mult(this);
-	    this.rotirajX(90+kut);
+	    this.rotirajX(-Math.asin((this.b / this.d)));
 	    this.mult(m1);
-	    m1.pomakni(x2, y2, z2);
+	    m1.pomakni(x1, y1, z1);
 	    m1.mult(this);
 	    this.m = m1.getM();
 	     for (int i = 0; i < this.m.length; i++) {
@@ -71,6 +72,18 @@ public class MT3D {
 	    		System.out.println(this.m[i][j]);
 	    	}
 	    }
+	}
+
+	private void calcCoefficients(double x1, double y1, double z1, 
+						 double x2, double y2, double z2) {
+		double tempX = Math.pow(x2 - x1, 2);
+		double tempY = Math.pow(y2 - y1, 2);
+		double tempZ = Math.pow(z2 - z1, 2);
+		double denominator = Math.sqrt(tempX + tempY + tempZ);
+		this.a = (x2 - x1) / denominator;
+		this.b = (y2 - y1) / denominator;
+		this.c = (z2 - z1) / denominator;
+		this.d = Math.sqrt(Math.pow(this.b, 2) + Math.pow(this.c, 2));
 	}
 
 	public void identitet() {

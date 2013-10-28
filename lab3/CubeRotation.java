@@ -56,7 +56,7 @@ public class CubeRotation extends Applet {
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
     o.postaviBoju(Color.red);
-    m.pomakni(0.5, 0.2, 0.7);
+    m.pomakni(0, 0, 0);
     m2.rotirajX(phix);
     m2.mult(m);
     m.rotirajY(phiy);
