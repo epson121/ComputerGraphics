@@ -56,8 +56,8 @@ public class CubeRotationOverLine extends Applet {
     o.linijaDo(10, -21, 5);
     o.postaviBoju(Color.black);
         
-    m2.rotirajX(120);
-    m.rotirajY(120);
+    m2.rotirajZ(-45);
+    m.rotirajY(30);
     m.mult(m2);
     //m2.rotirajZ(30);
     m2.rotiraj(-3, 5, -3, 2, -5, 2, phi);
