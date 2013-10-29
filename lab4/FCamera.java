@@ -6,9 +6,12 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.Random;
 
-public class CubeRotationOverLine extends Applet {
+public class FCamera extends Applet {
   int xsize, ysize, iy = 0;
   int phi = 2;
+    int phix = 2;
+  int phiy = 2;
+  int phiz = 2;
 
   class Animacija extends Thread {
     long pauza, kraj;
@@ -26,7 +29,9 @@ public class CubeRotationOverLine extends Applet {
         try {
           sleep(pauza); // pauza u milisekundama
         } catch (InterruptedException e) { }
-        phi += 5;
+         phix += 5;
+        phiy += 5;
+        phiz += 3;
         repaint();
       }
     } // run
@@ -42,27 +47,39 @@ public class CubeRotationOverLine extends Applet {
   public void paint(Graphics g) {
     xsize = getWidth();
     ysize = getHeight();
-
+    int widthX = 15;
+    int heightY = 15;
     Image slika = createImage(xsize, ysize);
     Graphics gs = slika.getGraphics();
 
     gs.setColor(Color.red);
 
-    Ortho o = new Ortho(gs, -15, 15, -15, 15, getWidth(), getHeight());
+    Ortho o = new Ortho(gs, -widthX, widthX, -heightY, heightY, getWidth(), getHeight());
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
-
-    o.postaviNa(-10, 19, 0);
-    o.linijaDo(10, -21, 1);
+    o.KSK(1, 1, -1, 0, 0, 0, 20, 20, 20);
+    /*o.postaviNa(-widthX, 0, 0);
+    o.linijaDo(widthX+1, 0, 0);
+    o.postaviNa(0, -heightY, 0);
+    o.linijaDo(0, heightY+1, 0);*/
     o.postaviBoju(Color.black);
-        
-    m2.rotirajZ(45);
-    m.rotirajY(-30);
+    //m.pomakni(0, 0, 0);
+    m2.rotirajY(phix);
+    m2.mult(m);
+    m.rotirajY(phiy);
     m.mult(m2);
-    //m2.rotirajZ(30);
-    m2.rotiraj(2, -5, 2, -3, 5, -3,  phi);
+    
+    m2.rotirajZ(phiz);
     m2.mult(m);
     o.trans(m2);
+    o.postaviBoju(Color.black);   
+    //m2.rotirajZ(45);
+    //m.rotirajY(-30);
+    //m.mult(m2);
+    //m2.rotirajZ(30);
+    //m2.rotiraj(2, -5, 2, -3, 5, -3,  phi);
+    //m2.mult(m);
+    //o.trans(m2);
     cube(o);
     g.drawImage(slika, 0, 0, null);
   }

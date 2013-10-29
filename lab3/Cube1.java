@@ -17,7 +17,7 @@ public class Cube1 extends Applet {
     MT3D m2 = new MT3D();
     o.postaviBoju(Color.red);
     //cube(o);
-    m.rotirajX(30);
+    /*m.rotirajX(30);
     o.trans(m);
     cube(o);  
     m2.rotirajY(30);
@@ -29,13 +29,13 @@ public class Cube1 extends Applet {
     //m.mult(m2);
     o.trans(m);
     o.postaviBoju(Color.blue);
-    cube(o);
-    m2.rotirajX(30);
-    m.rotirajY(30);
-    m.mult(m2);
-    m2.rotirajZ(30);
-    m2.mult(m);
-    o.trans(m2);
+    cube(o);*/
+    //m2.rotirajZ(30);
+    m.rotirajZ(30);
+    //m.mult(m2);
+    /*m2.rotirajZ(30);
+    m2.mult(m);*/
+    o.trans(m);
     o.postaviBoju(Color.black);
     cube(o);
   
@@ -63,17 +63,8 @@ public class Cube1 extends Applet {
     o.linijaDo(1, 0, 1);
     o.linijaDo(1, 0, 0);
     o.linijaDo(1, 1, 0);
-    //o.linijaDo(1, 0, 0);
+    o.linijaDo(1, 0, 0);
   }
 
-  public void elipse(GKS gks, double a, double b, double step) {
-    double phi;
-    double x, y;
-    gks.postaviNa(a * Math.cos(0), b * Math.sin(0));
-    for(phi = 0; phi <= 2.0 * Math.PI + step; phi += step) {
-      x = a * Math.cos(phi);
-      y = b * Math.sin(phi);
-      gks.linijaDo(x, y);
-    }
-  }
+  
 }

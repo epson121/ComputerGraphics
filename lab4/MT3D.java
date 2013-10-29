@@ -121,18 +121,6 @@ public class MT3D {
            }
        }
        this.m = c;
-       ispisi();
    }
-
-   public void ispisi(){
-		System.out.println("Ortho mat:");
-		for(int i = 0; i < 4; i++){
-			System.out.println();
-			for(int j = 0; j < 4; j++){
-				System.out.print(this.m[i][j] + " ");
-			}
-		}
-		System.out.println("\n");
-	}
 
 }

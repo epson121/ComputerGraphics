@@ -28,9 +28,9 @@ public class CubeRotation extends Applet {
         try {
           sleep(pauza); // pauza u milisekundama
         } catch (InterruptedException e) { }
-        phix += 3;
-        phiy += 2;
-        phiz += 4;
+        phix += 5;
+        phiy += 5;
+        phiz += 3;
         repaint();
       }
     } // run
@@ -56,7 +56,7 @@ public class CubeRotation extends Applet {
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
     o.postaviBoju(Color.red);
-    //m.pomakni(2, 1, 0);
+    m.pomakni(0, 0, 0);
     m2.rotirajX(phix);
     m2.mult(m);
     m.rotirajY(phiy);
@@ -73,29 +73,27 @@ public class CubeRotation extends Applet {
   } // paint
 
   public void cube(Ortho o) {
-    o.postaviNa(-1, -1, -1);
-    o.linijaDo(1, -1, -1);
-    o.linijaDo(1,1,-1);
-    o.linijaDo(-1, 1, -1);
-    o.linijaDo(-1, -1, -1); 
+    o.postaviNa(0, 0, 0);
+    o.linijaDo(1, 0, 0);
+    o.linijaDo(1, 0, 1);
+    o.linijaDo(0, 0, 1);
+    o.linijaDo(0, 0, 0); 
     
-    o.postaviNa(1, -1, 1);
-    o.linijaDo(1, -1, 1);
+    o.linijaDo(0, 1, 0);
+    o.linijaDo(0, 1, 1);
+    o.linijaDo(0, 0, 1);
+    o.linijaDo(0, 0, 0);
+    
+    o.linijaDo(0, 1, 0);
+    o.linijaDo(1, 1, 0);
     o.linijaDo(1, 1, 1);
-    o.linijaDo(-1, 1, 1);
-    o.linijaDo(-1, -1, 1);
-    o.linijaDo(1, -1, 1);
-
-    o.linijaDo(1, -1, -1);
-    o.linijaDo(1, 1, -1);
+    o.linijaDo(0, 1, 1);
     o.linijaDo(1, 1, 1);
-    o.linijaDo(1, -1, 1);
 
-    o.linijaDo(-1, -1, 1);
-    o.linijaDo(-1, 1, 1);
-    o.linijaDo(-1, 1, -1);
-    o.linijaDo(-1, -1, -1);
-    o.linijaDo(-1, -1, 1) ;
+    o.linijaDo(1, 0, 1);
+    o.linijaDo(1, 0, 0);
+    o.linijaDo(1, 1, 0);
+    //o.linijaDo(1, 0, 0);
   }
 
 } // class JAnimacija2

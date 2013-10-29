@@ -57,6 +57,7 @@ public class Ortho {
 				this.matrix[i][j] = temp[i][j];
 			}
 		}
+		ispisi();
     } 
 
     public double[] mult(double[] vector, double[][] matrix) {
@@ -68,6 +69,17 @@ public class Ortho {
 			}
 		}
 		return res;
+	}
+
+	public void ispisi(){
+		System.out.println("Ortho mat:");
+		for(int i = 0; i < 4; i++){
+			System.out.println();
+			for(int j = 0; j < 4; j++){
+				System.out.print(this.matrix[i][j] + " ");
+			}
+		}
+		System.out.println("\n");
 	}
 
     /**

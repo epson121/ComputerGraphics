@@ -9,3 +9,4 @@ University course about computer graphics. It includes various topics, starting 
 * added W1 code (simple shapes and coordinate conversion)
 * added W2 code (matrix transformations)
 * added W3 code (3d cube; cube rotation over x, y and z; cube rotation over line given by 2 points)
+* added W4 code (partial)
