@@ -54,26 +54,21 @@ public class MT3D {
 		calcCoefficients(x1, y1, z1, x2, y2, z2);
 		MT3D m1 = new MT3D();
 	    m1.pomakni(-x1, -y1, -z1);
-	    this.rotirajX(Math.asin(this.b / this.d));
+	    this.rotirajX(Math.toDegrees(Math.asin(this.b / this.d)));
 	    this.mult(m1);
-	    m1.rotirajY(-Math.asin(this.a));
+	    m1.rotirajY(Math.toDegrees(Math.asin(this.a)) * (-1));
 	    m1.mult(this);
 	    this.rotirajZ(kut);
 	    this.mult(m1);
-	    m1.rotirajY(Math.asin(this.a));
+	    m1.rotirajY(Math.toDegrees(Math.asin(this.a)));
 	    m1.mult(this);
-	    this.rotirajX(-Math.asin((this.b / this.d)));
+	    this.rotirajX(Math.toDegrees(Math.asin((this.b / this.d))) * (-1));
 	    this.mult(m1);
 	    m1.pomakni(x1, y1, z1);
 	    m1.mult(this);
 	    this.m = m1.getM();
-	     for (int i = 0; i < this.m.length; i++) {
-    	 	for (int j = 0; j < this.m.length; j++) {
-	    		System.out.println(this.m[i][j]);
-	    	}
-	    }
 	}
-
+	
 	private void calcCoefficients(double x1, double y1, double z1, 
 						 double x2, double y2, double z2) {
 		double tempX = Math.pow(x2 - x1, 2);
@@ -121,18 +116,6 @@ public class MT3D {
            }
        }
        this.m = c;
-       ispisi();
    }
-
-   public void ispisi(){
-		System.out.println("Ortho mat:");
-		for(int i = 0; i < 4; i++){
-			System.out.println();
-			for(int j = 0; j < 4; j++){
-				System.out.print(this.m[i][j] + " ");
-			}
-		}
-		System.out.println("\n");
-	}
 
 }

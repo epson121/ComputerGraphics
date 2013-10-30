@@ -26,7 +26,7 @@ public class CubeRotationOverLine extends Applet {
         try {
           sleep(pauza); // pauza u milisekundama
         } catch (InterruptedException e) { }
-        phi += 5;
+        phi += 4;
         repaint();
       }
     } // run
@@ -47,52 +47,25 @@ public class CubeRotationOverLine extends Applet {
     Graphics gs = slika.getGraphics();
 
     gs.setColor(Color.red);
-
-    Ortho o = new Ortho(gs, -15, 15, -15, 15, getWidth(), getHeight());
+    int oWidth = 10;
+    int oHeight = 5;
+    Ortho o = new Ortho(gs, -oWidth, oWidth, 
+                        -oHeight, oHeight, 
+                        getWidth(), getHeight());
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
 
-    o.postaviNa(-10, 19, 0);
-    o.linijaDo(10, -21, 1);
+    o.postaviNa(2, -5, 2);
+    o.linijaDo(-3, 5, -3);
     o.postaviBoju(Color.black);
-        
-    m2.rotirajZ(45);
-    m.rotirajY(-30);
-    m.mult(m2);
-    //m2.rotirajZ(30);
+    
     m2.rotiraj(2, -5, 2, -3, 5, -3,  phi);
-    m2.mult(m);
+
     o.trans(m2);
-    cube(o);
+    cube(o, 2);
     g.drawImage(slika, 0, 0, null);
   }
-
-  public void cube(Ortho o) {
-    o.postaviNa(-1, -1, -1);
-    o.linijaDo(1, -1, -1);
-    o.linijaDo(1,1,-1);
-    o.linijaDo(-1, 1, -1);
-    o.linijaDo(-1, -1, -1); 
-    
-    o.postaviNa(1, -1, 1);
-    o.linijaDo(1, -1, 1);
-    o.linijaDo(1, 1, 1);
-    o.linijaDo(-1, 1, 1);
-    o.linijaDo(-1, -1, 1);
-    o.linijaDo(1, -1, 1);
-
-    o.linijaDo(1, -1, -1);
-    o.linijaDo(1, 1, -1);
-    o.linijaDo(1, 1, 1);
-    o.linijaDo(1, -1, 1);
-
-    o.linijaDo(-1, -1, 1);
-    o.linijaDo(-1, 1, 1);
-    o.linijaDo(-1, 1, -1);
-    o.linijaDo(-1, -1, -1);
-    o.linijaDo(-1, -1, 1) ;
-  }
-  /*
+  
   public void cube(Ortho o, int a) {
     o.postaviNa(0, 0, 0);
     o.linijaDo(a, 0, 0);
@@ -115,6 +88,6 @@ public class CubeRotationOverLine extends Applet {
     o.linijaDo(a, 0, 0);
     o.linijaDo(a, a, 0);
   }
-*/
+
 }
 

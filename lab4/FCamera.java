@@ -9,10 +9,10 @@ import java.util.Random;
 public class FCamera extends Applet {
   int xsize, ysize, iy = 0;
   int phi = 2;
-    int phix = 2;
-  int phiy = 2;
-  int phiz = 2;
-
+  int phix = 2, phiy=2, phiz=2;
+  double cx = 10, cy = 0, cz = 0;
+  boolean reverseX = false;
+  boolean reverseY = false;
   class Animacija extends Thread {
     long pauza, kraj;
 
@@ -29,10 +29,38 @@ public class FCamera extends Applet {
         try {
           sleep(pauza); // pauza u milisekundama
         } catch (InterruptedException e) { }
-         phix += 5;
-        phiy += 5;
-        phiz += 3;
-        repaint();
+          phix += 2;
+          phiy += 2;
+          phiz += 2;
+          int xLim = 30;
+          int yLim = 30;
+          double speed = 0.5;
+          if (cx > xLim) {
+            reverseX = true;
+          }
+          if (cx < -xLim) {
+            reverseX = false;
+          }
+
+          if (cy > yLim) {
+            reverseY = true;
+          }
+          if (cy < -yLim) {
+            reverseY = false;
+          }
+
+          if (reverseX) {
+            cx -= speed;
+          } else {
+            cx += speed;
+          }
+          
+          if (reverseY) {
+            cy -= speed;
+          } else {
+            cy += speed;
+          }
+          repaint();
       }
     } // run
   } // class Animacija
@@ -57,14 +85,22 @@ public class FCamera extends Applet {
     Ortho o = new Ortho(gs, -widthX, widthX, -heightY, heightY, getWidth(), getHeight());
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
-    o.KSK(1, 1, -1, 0, 0, 0, 20, 20, 20);
-    /*o.postaviNa(-widthX, 0, 0);
+    o.KSK(cx, cy, 15, 0, 0, 0, 3, 3, 3);
+    o.postaviNa(-widthX, 0, 0);
+    // x axis
+    o.postaviBoju(Color.green);
     o.linijaDo(widthX+1, 0, 0);
     o.postaviNa(0, -heightY, 0);
-    o.linijaDo(0, heightY+1, 0);*/
+    // y axis
+    o.postaviBoju(Color.blue);
+    o.linijaDo(0, heightY+1, 0);
+    o.postaviNa(0, 0, -heightY);
+    //z axis
+    o.postaviBoju(Color.red);
+    o.linijaDo(0, 0, heightY);
     o.postaviBoju(Color.black);
-    //m.pomakni(0, 0, 0);
-    m2.rotirajY(phix);
+    m.rotirajZ(phix);
+    /*m2.rotirajY(phix);
     m2.mult(m);
     m.rotirajY(phiy);
     m.mult(m2);
@@ -79,7 +115,7 @@ public class FCamera extends Applet {
     //m2.rotirajZ(30);
     //m2.rotiraj(2, -5, 2, -3, 5, -3,  phi);
     //m2.mult(m);
-    //o.trans(m2);
+    //o.trans(m2);*/
     cube(o);
     g.drawImage(slika, 0, 0, null);
   }
@@ -109,29 +145,6 @@ public class FCamera extends Applet {
     o.linijaDo(-1, -1, -1);
     o.linijaDo(-1, -1, 1) ;
   }
-  /*
-  public void cube(Ortho o, int a) {
-    o.postaviNa(0, 0, 0);
-    o.linijaDo(a, 0, 0);
-    o.linijaDo(a, 0, a);
-    o.linijaDo(0, 0, a);
-    o.linijaDo(0, 0, 0); 
-    
-    o.linijaDo(0, a, 0);
-    o.linijaDo(0, a, a);
-    o.linijaDo(0, 0, a);
-    o.linijaDo(0, 0, 0);
-    
-    o.linijaDo(0, a, 0);
-    o.linijaDo(a, a, 0);
-    o.linijaDo(a, a, a);
-    o.linijaDo(0, a, a);
-    o.linijaDo(a, a, a);
-
-    o.linijaDo(a, 0, a);
-    o.linijaDo(a, 0, 0);
-    o.linijaDo(a, a, 0);
-  }
-*/
+  
 }
 

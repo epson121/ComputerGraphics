@@ -36,12 +36,6 @@ public class Ortho {
 				 double ymax, int xsize, 
 				 int ysize) {
 		this.g = g;
-		/*this.sx = xsize / (xmax - xmin);
-		this.sy = ysize / (ymax - ymin);
-		this.px = -sx * xmin;
-		this.py = sy * ymax;
-		this.w = xsize;
-		this.h = ysize;*/
 		gks = new GKS(g, xmin, xmax, ymin, ymax, xsize, ysize);
 	}
 	
@@ -57,8 +51,8 @@ public class Ortho {
 		double[] r1 = gks.mult(vec, this.matrix);
 		double[] r2 = gks.mult(vec2, this.matrix);
 		//mult again
-		r1 = getCameraVector(this.matrix, r1);
-		r2 = getCameraVector(this.matrix, r2);
+		r1 = getCameraVector(r1);
+		r2 = getCameraVector(r2);
 		g.setColor(this.c);
 		this.g.drawLine(gks.transformX(r1[0]), gks.transformY(r1[1]),
 						gks.transformX(r2[0]), gks.transformY(r2[1]));
@@ -99,11 +93,7 @@ public class Ortho {
 
 		double [] vVector = vectorProduct(nVector, uVector);
 		this.rMatrix = getRMatrix(uVector, vVector, nVector);
-		/*
-		// from the formula (rightmost one)
-		double[] tempVector = 
-		cameraMatrix = 
-		*/
+
 	}
 
 	public double vectorLength(double[] a) {
@@ -139,14 +129,14 @@ public class Ortho {
 							  };
 	}
 
-	public double[] getCameraVector(double[][] rMatrix, double[] vector) {
+	public double[] getCameraVector(double[] vector) {
 		double[][] temp = new double[][] {{1, 0, 0, -this.x0}, 
 										  {0, 1, 0, -this.y0}, 
 										  {0, 0, 1, -this.z0},
 										  {0, 0, 0, 1}
 										 };
 	 	double[] tempVector = gks.mult(vector, temp);
-	 	double[] result = gks.mult(tempVector, rMatrix);
+	 	double[] result = gks.mult(tempVector, this.rMatrix);
 	 	return result;
 	 }
 
