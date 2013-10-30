@@ -6,11 +6,11 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.Random;
 
-public class FCamera extends Applet {
+public class FCameraPerspective extends Applet {
   int xsize, ysize, iy = 0;
   int phi = 2;
   int phix = 2, phiy=2, phiz=2;
-  double cx = 15, cy = 0, cz = 0;
+  double cx = 5, cy = 0, cz = 0;
   boolean reverseX = false;
   boolean reverseY = false;
   int camHeight = 0;
@@ -39,9 +39,9 @@ public class FCamera extends Applet {
           phix += 2;
           phiy += 2;
           phiz += 2;
-          int xLim = 10;
-          int yLim = 10;
-          double speed = 0.2;
+          int xLim = 5;
+          int yLim = 5;
+          double speed = 0.3;
           if (cx >= xLim) {
             reverseX = true;
           }
@@ -88,15 +88,15 @@ public class FCamera extends Applet {
     Graphics gs = slika.getGraphics();
 
     gs.setColor(Color.red);
-
-    Ortho o = new Ortho(gs, -widthX, widthX, -heightY, heightY, getWidth(), getHeight());
+    double d = 2;
+    Persp o = new Persp(gs, -widthX, widthX, -heightY, heightY, d, getWidth(), getHeight());
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
     o.KSK(cx, cy, camHeight, 0, 0, 0, 0, 0, 1);
 
     o.postaviNa(-widthX, 0, 0);
     // x axis
-    /*o.postaviBoju(Color.green);
+    o.postaviBoju(Color.green);
     o.linijaDo(widthX+1, 0, 0);
     o.postaviNa(0, -heightY, 0);
     // y axis
@@ -107,7 +107,7 @@ public class FCamera extends Applet {
     o.postaviBoju(Color.red);
     o.linijaDo(0, 0, heightY);
     o.postaviBoju(Color.black);
-  */
+  
     drawxyPlane(o, widthX, heightY);
     o.postaviBoju(Color.black);
     m2.pomakni(2, 2, 0);
@@ -145,7 +145,7 @@ public class FCamera extends Applet {
     g.drawImage(slika, 0, 0, null);
   }
 
-  public void cube(Ortho o) {
+  public void cube(Persp o) {
     o.postaviNa(-1, -1, -1);
     o.linijaDo(1, -1, -1);
     o.linijaDo(1,1,-1);
@@ -171,7 +171,7 @@ public class FCamera extends Applet {
     o.linijaDo(-1, -1, 1) ;
   }
 
-   public void cube(Ortho o, int a) {
+   public void cube(Persp o, int a) {
     o.postaviNa(0, 0, 0);
     o.linijaDo(a, 0, 0);
     o.linijaDo(a, 0, a);
@@ -194,7 +194,7 @@ public class FCamera extends Applet {
     o.linijaDo(a, a, 0);
   }
 
-  public void drawxyPlane(Ortho o, int w, int h) {
+  public void drawxyPlane(Persp o, int w, int h) {
     double i = 0;
     double j = 0;
     double step = 0.2;
