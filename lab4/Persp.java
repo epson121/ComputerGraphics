@@ -54,8 +54,8 @@ public class Persp {
 		r1 = getCameraVector(r1);
 		r2 = getCameraVector(r2);
 		g.setColor(this.c);
-		this.g.drawLine(gks.transformX(r1[0]), gks.transformY(r1[1] * (this.d/r1[2]) * (-1)),
-						gks.transformX(r2[0]), gks.transformY(r2[1] *(this.d/r2[2]) * (-1)));
+		this.g.drawLine(gks.transformX(r1[0] * (this.d/r1[2]) * (-1)), gks.transformY(r1[1] * (this.d/r1[2]) * (-1)),
+						gks.transformX(r2[0] * (this.d/r2[2]) * (-1)), gks.transformY(r2[1] *(this.d/r2[2]) * (-1)));
     	postaviNa(x, y, z);
     }
 

@@ -8,11 +8,8 @@ import java.util.Random;
 
 public class FCamera extends Applet {
   int xsize, ysize, iy = 0;
-  int phi = 2;
+  int phi = 0;
   int phix = 2, phiy=2, phiz=2;
-  double cx = 15, cy = 0, cz = 0;
-  boolean reverseX = false;
-  boolean reverseY = false;
   int camHeight = 0;
   int countToSwap = 0;
   class Animacija extends Thread {
@@ -32,41 +29,14 @@ public class FCamera extends Applet {
           sleep(pauza); // pauza u milisekundama
           countToSwap += 1;
           if (countToSwap  > 160) {
-            camHeight += 3;
+            camHeight += 1;
             countToSwap = 0;
           }
         } catch (InterruptedException e) { }
           phix += 2;
           phiy += 2;
           phiz += 2;
-          int xLim = 10;
-          int yLim = 10;
-          double speed = 0.2;
-          if (cx >= xLim) {
-            reverseX = true;
-          }
-          if (cx <= -xLim) {
-            reverseX = false;
-          }
-
-          if (cy >= yLim) {
-            reverseY = true;
-          }
-          if (cy <= -yLim) {
-            reverseY = false;
-          }
-
-          if (reverseX) {
-            cx -= speed;
-          } else {
-            cx += speed;
-          }
-          
-          if (reverseY) {
-            cy -= speed;
-          } else {
-            cy += speed;
-          }
+          phi += 5;
           repaint();
       }
     } // run
@@ -92,7 +62,7 @@ public class FCamera extends Applet {
     Ortho o = new Ortho(gs, -widthX, widthX, -heightY, heightY, getWidth(), getHeight());
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
-    o.KSK(cx, cy, camHeight, 0, 0, 0, 0, 0, 1);
+    o.KSK(Math.cos(Math.toRadians(phi)), Math.sin(Math.toRadians(phi)), camHeight, 0, 0, 0, 0, 0, 1);
 
     o.postaviNa(-widthX, 0, 0);
     // x axis
@@ -108,9 +78,12 @@ public class FCamera extends Applet {
     o.linijaDo(0, 0, heightY);
     o.postaviBoju(Color.black);
   */
+    m.pomakni(-3.25, -3.25, 0);
+    o.trans(m);
     drawxyPlane(o, widthX, heightY);
     o.postaviBoju(Color.black);
     m2.pomakni(2, 2, 0);
+    m2.mult(m);
     o.trans(m2);
     cube(o, 1);
     m.pomakni(0, 0, 1);
