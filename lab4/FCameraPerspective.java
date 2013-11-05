@@ -28,7 +28,7 @@ public class FCameraPerspective extends Applet {
           sleep(pauza); // pauza u milisekundama
           countToSwap += 1;
           if (countToSwap  > 160) {
-            camHeight += 1;
+            camHeight += 2;
             countToSwap = 0;
           }
         } catch (InterruptedException e) { }
@@ -59,27 +59,16 @@ public class FCameraPerspective extends Applet {
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
     //o.KSK(cx, cy, camHeight, 0, 0, 0, 0, 0, 1);
-    o.KSK(Math.cos(Math.toRadians(phi)) * 20, Math.sin(Math.toRadians(phi)) * 20, camHeight, 0, 0, 0, 0, 0, 1);
+    o.KSK(Math.cos(Math.toRadians(phi)) * 10, Math.sin(Math.toRadians(phi)) * 10, camHeight, 0, 0, 0, 0, 0, 1);
 
     o.postaviNa(-widthX, 0, 0);
-    /*
-    // x axis
-    o.postaviBoju(Color.green);
-    o.linijaDo(widthX+1, 0, 0);
-    o.postaviNa(0, -heightY, 0);
-    // y axis
-    o.postaviBoju(Color.blue);
-    o.linijaDo(0, heightY+1, 0);
-    o.postaviNa(0, 0, -heightY);
-    //z axis
-    o.postaviBoju(Color.red);
-    o.linijaDo(0, 0, heightY);
-    o.postaviBoju(Color.black);
-    */
-
+    
+    m.pomakni(-3.25, -3.25, 0);
+    o.trans(m);
     drawxyPlane(o, widthX, heightY);
     o.postaviBoju(Color.black);
-    m2.pomakni(2, 2, 0);
+    m2.pomakni(6, 6, 0);
+    m2.mult(m);
     o.trans(m2);
     cube(o, 1);
     m.pomakni(0, 0, 1);
@@ -141,6 +130,8 @@ public class FCameraPerspective extends Applet {
     double i = 0;
     double j = 0;
     double step = 0.2;
+    w = w*2;
+    h = h*2;
     o.postaviNa(0, 0, 0);
     o.postaviBoju(Color.green);
     while (i < w) {
