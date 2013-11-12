@@ -61,14 +61,17 @@ public class Kugla extends Applet {
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
     //o.KSK(cx, cy, camHeight, 0, 0, 0, 0, 0, 1);
-    o.KSK(15, 0, camHeight, 0, 0, 0, 0, 0, 1);
+    o.KSK(12, 0, 5, 0, 0, 0, 0, 0, 1);
 
     o.postaviNa(0, 0, 0);
     m.rotirajZ(phix);
     //m2.rotirajX(phix);
     //m2.mult(m);
     o.trans(m);
-    o.kugla(5, 16, 17);
+    //o.kugla(5, 32, 17);
+    o.polukugla(5, 32, 17);
+    o.postaviBoju(Color.green);
+    //o.kugla(5, 32, 17);
 
    
     //m.pomakni(double px, double py, double pz)

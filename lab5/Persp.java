@@ -189,28 +189,49 @@ public class Persp {
 	 }
 
 	 public void kugla(double r, int m, int n) {
+	 	kugla_drawer(r, m, n, 1);
+	 }
+
+	 public void polukugla(double r, int m, int n) {
+	 	kugla_drawer(r, m, n, 0);
+	 }
+
+	 /**
+	 * @type - half sphere / full sphere
+	 */
+	 public void kugla_drawer(double r, int m, int n, int type) {
 	 	double step = Math.PI/(n+1);
-	 	double step2 = (2.0 * Math.PI)/(m+1);
+	 	double step2 = Math.PI/(m+1);
 	 	double drawStep = 0.01;
-	 	double phi = 0, theta = 0;
+	 	double theta = 0;
 	    double x, y, z;
 	    
-	    for(theta = 0; theta <= 2.0 * Math.PI; theta += step) {
+	    double limit;
+	    if (type == 0) {
+	    	limit = Math.PI;
+	    } else {
+	    	limit = 2.0 * Math.PI;
+	    }
+	    double phi = 0;
+	    for(theta = 0; theta <= limit; theta += step) {
 			z = r * Math.cos(theta);
 			postaviNa(r * Math.sin(theta) * Math.cos(phi),
 					  r * Math.sin(theta) * Math.sin(phi),
 					  z);
-			for (phi = 0; phi <= 2.0 * Math.PI; phi += drawStep) {
+			for (phi = 0; phi <= limit; phi += drawStep) {
 				x = r * Math.cos(phi) * Math.sin(theta);
 				y = r * Math.sin(theta) * Math.sin(phi);
-				linijaDo(x, y, z);	
+				if (phi == 0)
+					postaviNa(x, y, z);
+				else
+					linijaDo(x, y, z);
 			}
 			
 	    }
 	    
-		for (theta = 0; theta <= 2.0 * Math.PI; theta += step2) {
+		for (theta = 0; theta <= limit; theta += step2) {
 			postaviNa(0, 0, r);
-	     	for(phi = 0; phi <= 2.0 * Math.PI; phi += drawStep) {
+	     	for(phi = 0; phi <= limit; phi += drawStep) {
 		      	z = r * Math.cos(phi);
 		      	x = r * Math.sin(phi) * Math.cos(theta);
 		      	y = r * Math.sin(phi) * Math.sin(theta);
