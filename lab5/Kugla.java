@@ -9,6 +9,7 @@ import java.util.Random;
 public class Kugla extends Applet {
   int xsize, ysize, iy = 0;
   int phi = 0;
+  int phix = 0;
   int camHeight = 0;
   int countToSwap = 0;
   class Animacija extends Thread {
@@ -27,12 +28,13 @@ public class Kugla extends Applet {
         try {
           sleep(pauza); // pauza u milisekundama
           countToSwap += 1;
-          if (countToSwap  > 160) {
-            camHeight += 2;
+          if (countToSwap  > 80) {
+            camHeight += 4;
             countToSwap = 0;
           }
         } catch (InterruptedException e) { }
           phi += 3;
+          phix += 2;
           repaint();
       }
     } // run
@@ -59,10 +61,14 @@ public class Kugla extends Applet {
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
     //o.KSK(cx, cy, camHeight, 0, 0, 0, 0, 0, 1);
-    o.KSK(10, 10, 10, 0, 0, 0, 0, 0, 1);
+    o.KSK(15, 0, camHeight, 0, 0, 0, 0, 0, 1);
 
     o.postaviNa(0, 0, 0);
-    o.kugla(5, 100, 10);
+    m.rotirajZ(phix);
+    //m2.rotirajX(phix);
+    //m2.mult(m);
+    o.trans(m);
+    o.kugla(5, 16, 17);
 
    
     //m.pomakni(double px, double py, double pz)

@@ -189,19 +189,35 @@ public class Persp {
 	 }
 
 	 public void kugla(double r, int m, int n) {
-	 	double step, s2 = (2.0 * Math.PI)/1;;
-	 	double phi, theta;
+	 	double step = Math.PI/(n+1);
+	 	double step2 = (2.0 * Math.PI)/(m+1);
+	 	double drawStep = 0.01;
+	 	double phi = 0, theta = 0;
 	    double x, y, z;
-	    step = (2.0 * Math.PI)/50;
-	    for(phi = 0; phi <= 2.0 * Math.PI + step; phi += step) {
-	    	z = r * Math.cos(phi);
-	    	postaviNa(r * Math.cos(phi), r * Math.sin(phi), z);
-	    	for(theta = 0; theta <= 2.0 * Math.PI + step; theta += step) {
-	      		x = r * Math.sin(phi) * Math.cos(theta);
-	      		y = r * Math.sin(phi) * Math.sin(theta);
-	      		linijaDo(x, y, z);
-	    	}
+	    
+	    for(theta = 0; theta <= 2.0 * Math.PI; theta += step) {
+			z = r * Math.cos(theta);
+			postaviNa(r * Math.sin(theta) * Math.cos(phi),
+					  r * Math.sin(theta) * Math.sin(phi),
+					  z);
+			for (phi = 0; phi <= 2.0 * Math.PI; phi += drawStep) {
+				x = r * Math.cos(phi) * Math.sin(theta);
+				y = r * Math.sin(theta) * Math.sin(phi);
+				linijaDo(x, y, z);	
+			}
+			
 	    }
-	 }
+	    
+		for (theta = 0; theta <= 2.0 * Math.PI; theta += step2) {
+			postaviNa(0, 0, r);
+	     	for(phi = 0; phi <= 2.0 * Math.PI; phi += drawStep) {
+		      	z = r * Math.cos(phi);
+		      	x = r * Math.sin(phi) * Math.cos(theta);
+		      	y = r * Math.sin(phi) * Math.sin(theta);
+		      	linijaDo(x, y, z);
+		    }
+		}
+		
+ 	}
 
 }
