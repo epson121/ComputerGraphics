@@ -4,8 +4,8 @@ import java.awt.Color;
 
 public class GKS extends Applet {
 
-	public double x;
-	public double y;
+	private double x;
+	private double y;
 	private Graphics g;
 
 	private double sx, px, sy, py;
@@ -89,12 +89,6 @@ public class GKS extends Applet {
 		}
 	}
 
-	public getX() {
-		return this.x;
-	}
 
-	public getY() {
-		return this.y;
-	}
 
 }
