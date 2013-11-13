@@ -81,5 +81,5 @@ public class Ventilator extends Applet {
     }
   }
 
-} // class JAnimacija2
+}
 

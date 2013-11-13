@@ -6,10 +6,10 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.Random;
 
-public class Vjetromjer extends Applet {
+public class Traktor extends Applet {
   int xsize, ysize, iy = 0;
   int phi = 0;
-  int phix = 0;
+  double phix = 0;
   int camHeight = 0;
   int countToSwap = 0;
   class Animacija extends Thread {
@@ -34,7 +34,7 @@ public class Vjetromjer extends Applet {
           }
         } catch (InterruptedException e) { }
           phi += 3;
-          phix += 2;
+          phix += 0.01;
           repaint();
       }
     } // run
@@ -61,118 +61,130 @@ public class Vjetromjer extends Applet {
     MT3D m = new MT3D();
     MT3D m2 = new MT3D();
     MT3D m3 = new MT3D();
-    p.KSK(12, 12, 10, 0, 0, 0, 0, 0, 1);
-
+    MT3D m4 = new MT3D();
+    p.KSK(Math.cos(Math.toRadians(phi)) * 10, Math.sin(Math.toRadians(phi)) * 10, 10, 0, 0, 0, 0, 0, 1);
+    //p.KSK(10, 0, 10, 0, 0, 0, 0, 0, 1);
     drawxyPlane(p, -widthX, widthX, -heightY, heightY);
     p.postaviBoju(Color.black);
-    int stozacVisina = 5;
+    
 
-
-    // postolje i valjak na vrhu    
-    p.stozac(2, stozacVisina, 20);
-    m.pomakni(0, 0, stozacVisina-1);
+    
+    m.identitet();
+    m2.identitet();
+    m3.pomakni(-phix, -phix, 0);
+    m.rotirajZ(45);
+    m.mult(m3);
+    m2.pomakni(0, 0.5, 0);
+    m2.mult(m);
+    m.pomakni(0, -1, 0.5);
+    m.mult(m2);
     p.trans(m);
-    m3.rotirajZ(phi);
-    m3.mult(m);
-    p.trans(m3);
-    p.valjak(0.6, 1, 10);
+    p.valjak(1, 1.5, 4);
+
+    
+    m.identitet();
+    m2.identitet();
+    m3.pomakni(-phix, -phix, 0);
+    m.rotirajZ(45);
+    m.mult(m3);
+    m2.pomakni(0, 0.5, 0);
+    m2.mult(m);
+    m.pomakni(0, 0, 0.5);
+    m.mult(m2);
+    p.trans(m);
+    p.valjak(0.8, 2, 4);
+
+    // zadnji kotac 1
+    m.identitet();
+    m2.identitet();
+    m3.pomakni(-phix, -phix, 0);
+    m2.rotirajZ(phi);
+    m.rotirajZ(45);
+    m.mult(m3);
+    m.mult(m2);
     m2.rotirajY(90);
-    m2.mult(m3);
-    p.trans(m2);
-    m.pomakni(0, 0, stozacVisina);
-    m.mult(m2);
-    p.trans(m2);
-    
-    // ruka 1
-    m.identitet();
-    m2.identitet();
-    m2.rotirajX(90);
-    m.pomakni(0, 4.5, 0);
     m2.mult(m);
-    p.trans(m2);
-    m3.rotirajZ(phi);
-    m3.mult(m2);
-    p.trans(m3);
-    p.valjak(0.4, 4, 6);
-
-    // polukugla 1
-    m.identitet();
-    m2.identitet();
-    m.rotirajX(-90);
-    m2.rotirajY(-90);
-    m2.mult(m);
-    p.trans(m2);
-    m.pomakni(0, -4.8, 4.5);
+    m.pomakni(0.5, 0.5, 0.5);
     m.mult(m2);
     p.trans(m);
-    m3.rotirajZ(phi);
-    m3.mult(m);
-    p.trans(m3);
-    p.polukugla(0.8, 10, 10);
-   
-    // ruka 2
+    p.puni_valjak(0.5, 0.2, 20);
+
+    // zadnji kotac 2
     m.identitet();
     m2.identitet();
-    m2.rotirajX(90);
-    m.rotirajZ(120);
-    m.mult(m2);
-    m2.pomakni(0, 0, 4.5);
-    m2.mult(m);
-    p.trans(m2);
+    m4.pomakni(-phix, -phix, 0);
     m3.rotirajZ(phi);
-    m3.mult(m2);
-    p.trans(m3);
-    p.valjak(0.4, 4, 6);
-    
-    // polukugla 2
-    m.identitet();
-    m2.identitet();
-    m.rotirajX(-90);
-    m2.rotirajY(-90);
+    m.rotirajZ(45);
+    m.mult(m4);
+    m.mult(m3);
+    m2.rotirajY(90);
     m2.mult(m);
-    p.trans(m2);
-    m.rotirajZ(120);
+    m.pomakni(-0.7, 0.5, 0.5);
     m.mult(m2);
     p.trans(m);
-    m2.pomakni(3.9, 2.6, 4.5);
-    m2.mult(m);
-    p.trans(m2);
-    m3.rotirajZ(phi);
-    m3.mult(m2);
-    p.trans(m3);
-    p.polukugla(0.8, 10, 10);
+    p.puni_valjak(0.5, 0.2, 20);
 
-    // ruka 3
+    //osovina 1
     m.identitet();
     m2.identitet();
-    m2.rotirajX(90);
-    m.rotirajZ(240);
-    m.mult(m2);
-    m2.pomakni(0, 0, 4.5);
-    m2.mult(m);
-    p.trans(m2);
+    m4.pomakni(-phix, -phix, 0);
     m3.rotirajZ(phi);
-    m3.mult(m2);
-    p.trans(m3);
-    p.valjak(0.4, 4, 6);
-
-    // polukugla 3
-    m.identitet();
-    m2.identitet();
-    m.rotirajX(-90);
-    m2.rotirajY(-90);
+    m.rotirajZ(45);
+    m.mult(m4);
+    m.mult(m3);
+    m2.rotirajY(90);
     m2.mult(m);
-    p.trans(m2);
-    m.rotirajZ(240);
+    m.pomakni(-0.7, 0.5, 0.5);
     m.mult(m2);
     p.trans(m);
-    m2.pomakni(-3.9, 2.6, 4.5);
-    m2.mult(m);
-    p.trans(m2);
+    p.puni_valjak(0.02, 1, 20);
+
+    // prednji kotac 1
+    m.identitet();
+    m2.identitet();
+    m4.pomakni(-phix, -phix, 0);
     m3.rotirajZ(phi);
-    m3.mult(m2);
-    p.trans(m3);
-    p.polukugla(0.8, 10, 10);
+    m.rotirajZ(45);
+    m.mult(m4);
+    m.mult(m3);
+    m2.rotirajY(90);
+    m2.mult(m);
+    m.pomakni(-0.5, -1.5, 0.5);
+    m.mult(m2);
+    p.trans(m);
+    p.puni_valjak(0.3, 0.2, 20);
+
+    // prednji kotac 2
+    m.identitet();
+    m2.identitet();
+    m4.pomakni(-phix, -phix, 0);
+    m3.rotirajZ(phi);
+    m.rotirajZ(45);
+    m.mult(m4);
+    m.mult(m3);
+    m2.rotirajY(90);
+    m2.mult(m);
+    m.pomakni(0.5, -1.5, 0.5);
+    m.mult(m2);
+    p.trans(m);
+    p.puni_valjak(0.3, 0.2, 20);
+
+    // prednji kotac 1
+    m.identitet();
+    m2.identitet();
+    m4.pomakni(-phix, -phix, 0);
+    m3.rotirajZ(phi);
+    m.rotirajZ(45);
+    m.mult(m4);
+    m.mult(m3);
+    m2.rotirajY(90);
+    m2.mult(m);
+    m.pomakni(-0.5, -1.5, 0.5);
+    m.mult(m2);
+    p.trans(m);
+    p.puni_valjak(0.02, 1, 20);
+
+
     
     //m.pomakni(double px, double py, double pz)
     g.drawImage(slika, 0, 0, null);
@@ -194,6 +206,6 @@ public class Vjetromjer extends Applet {
       }
 
   }
-  
+
 }
 

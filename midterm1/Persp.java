@@ -159,7 +159,7 @@ public class Persp {
 	    }
 	 }
 
-	 public void valjak_drawer(double r, double r2, double h, int n) {
+	 public void valjak_drawer(double r, double r2, double h, int n, int aux) {
 	 	double step = (2.0 * Math.PI)/n;
 	 	double phi;
 	    double x, y;
@@ -170,6 +170,16 @@ public class Persp {
 	      y = r * Math.sin(phi);
 	      linijaDo(x, y, 0);
 	    }
+
+	    /*if (aux == 1) {
+		    postaviNa(0, 0, 0);
+		    for(phi = 0; phi <= 2.0 * Math.PI + step; phi += step) {
+		      x = r * Math.cos(phi);
+		      y = r * Math.sin(phi);
+		      linijaDo(x, y, 0);
+		      postaviNa(0, 0, 0);
+	    	}	
+	    }*/
 
 	    postaviNa(r2 * Math.cos(0), r2 * Math.sin(0), h);
 	    for(phi = 0; phi <= 2.0 * Math.PI + step; phi += step) {
@@ -186,14 +196,28 @@ public class Persp {
 	      linijaDo(x, y, 0);
 	    }
 
+	    if (aux == 1){
+		    postaviNa(0, 0, h);
+		    for(phi = 0; phi <= 2.0 * Math.PI + step; phi += step) {
+		      x = r2 * Math.cos(phi);
+		      y = r2 * Math.sin(phi);
+		      linijaDo(x, y, h);
+		      postaviNa(0, 0, h);
+		    }
+		}
+
 	 }
 
 	 public void valjak(double r, double h, int n) {
-	 	valjak_drawer(r, r, h, n);
+	 	valjak_drawer(r, r, h, n, 0);
 	 }
 
 	 public void krnjiStozac(double r, double r2, double h, int n) {
-	 	valjak_drawer(r, r2, h, n);
+	 	valjak_drawer(r, r2, h, n, 1);
+	 }
+
+	 public void puni_valjak(double r, double h, int n) {
+	 	valjak_drawer(r, r, h, n, 1);
 	 }
 
 	 public void kugla(double r, int m, int n) {
@@ -248,5 +272,40 @@ public class Persp {
 		}
 		
  	}
+
+ 	
+ 	public void elipsoid (double a, double b, int m, int n) {
+        n++;
+        double circle =  2.0 * Math.PI;
+        double stepN = circle / n / 2;
+        double stepM = (circle + 0.1) / m;
+        double x, y, z;
+        double ro = 0;
+
+        postaviNa(ro * Math.cos(0), ro * Math.sin(0), 0);
+        for(double theta = 0; theta <= circle; theta += stepN) {
+            ro = a * Math.sin(theta);  
+            postaviNa(ro * Math.cos(0), ro * Math.sin(0), b * Math.cos(theta));
+            
+            for(double phi = 0; phi <= circle/2 + 0.1; phi += 0.1) {
+                x = ro * Math.cos(phi);
+                y = ro * Math.sin(phi);
+                z = b * Math.cos(theta);
+                linijaDo(x, y, z);
+            }
+        }
+        
+        for(double theta = 0; theta <= circle; theta += stepM) {
+            ro = a * Math.sin(theta);  
+            postaviNa(Math.cos(theta) * Math.sin(0) * a, ro * Math.sin(0), b * Math.cos(0));
+        
+            for(double phi = 0; phi <= circle/2 + 0.1; phi += 0.1) {
+                x = a * Math.cos(theta) * Math.sin(phi);
+                y = ro * Math.sin(phi);
+                z = b * Math.cos(phi);
+                linijaDo(x, y, z);
+            }
+        }
+    }
 
 }
