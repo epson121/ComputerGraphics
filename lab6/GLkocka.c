@@ -31,6 +31,18 @@ void kocka(double a) {
   glEnd();
 } // kocka
 
+
+
+void elipsa(double a, double b) {
+  double t;
+
+  glBegin(GL_LINE_LOOP);
+    glVertex2d(a, 0);
+    for(t = 0.0; t < 2.0 * M_PI; t += M_PI / 100.0) 
+      glVertex2d(a * cos(t), b * sin(t));
+  glEnd();
+} // elipsa
+
 void iscrtaj(void) {
   glClear(GL_COLOR_BUFFER_BIT);
 
@@ -41,7 +53,7 @@ void iscrtaj(void) {
   glRotated(kut, 0.0, 1.0, 0.0);
   glRotated(kut, 1.0, 0.0, 0.0);
   glTranslated(-4.0, -4.0, -4.0);
-  kocka(8.0);
+  kocka();
 
   glutSwapBuffers();
 } // iscrtaj
