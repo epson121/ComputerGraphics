@@ -53,7 +53,7 @@ void iscrtaj(void) {
   glRotated(kut, 0.0, 1.0, 0.0);
   glRotated(kut, 1.0, 0.0, 0.0);
   glTranslated(-4.0, -4.0, -4.0);
-  kocka();
+  kocka(2);
 
   glutSwapBuffers();
 } // iscrtaj
