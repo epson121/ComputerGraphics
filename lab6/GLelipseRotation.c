@@ -29,40 +29,7 @@ void pravac() {
     glVertex2d(XMAX, y2);
   glEnd();
 }
-/*
-public void rotiraj(double x1, double y1, double z1, 
-            double x2, double y2, double z2, 
-            double kut) {
-    calcCoefficients(x1, y1, z1, x2, y2, z2);
-    MT3D m1 = new MT3D();
-      m1.pomakni(-x1, -y1, -z1);
-      this.rotirajX(Math.toDegrees(Math.asin(this.b / this.d)));
-      this.mult(m1);
-      m1.rotirajY(Math.toDegrees(Math.asin(this.a)) * (-1));
-      m1.mult(this);
-      this.rotirajZ(kut);
-      this.mult(m1);
-      m1.rotirajY(Math.toDegrees(Math.asin(this.a)));
-      m1.mult(this);
-      this.rotirajX(Math.toDegrees(Math.asin((this.b / this.d))) * (-1));
-      this.mult(m1);
-      m1.pomakni(x1, y1, z1);
-      m1.mult(this);
-      this.m = m1.getM();
-  }
-  
-  private void calcCoefficients(double x1, double y1, double z1, 
-             double x2, double y2, double z2) {
-    double tempX = Math.pow(x2 - x1, 2);
-    double tempY = Math.pow(y2 - y1, 2);
-    double tempZ = Math.pow(z2 - z1, 2);
-    double denominator = Math.sqrt(tempX + tempY + tempZ);
-    this.a = (x2 - x1) / denominator;
-    this.b = (y2 - y1) / denominator;
-    this.c = (z2 - z1) / denominator;
-    this.d = Math.sqrt(Math.pow(this.b, 2) + Math.pow(this.c, 2));
-  }
-  */
+
 // ova je rutina ekvivalent rutini paint u Javi:
 void iscrtaj(void) {
   // punjenje zaslona bojom pozadine koja se postavlja s glClearColor()
