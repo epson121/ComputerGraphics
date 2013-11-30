@@ -89,12 +89,4 @@ public class GKS extends Applet {
 		}
 	}
 
-	public getX() {
-		return this.x;
-	}
-
-	public getY() {
-		return this.y;
-	}
-
 }
