@@ -16,49 +16,46 @@ void osi(double a) {
   glEnd();
 } // osi
 
-void sphere(double r, int m, int n) {
+void half_sphere(double r, int m, int n) {
   double step1 = PI/(n+1);
   double step2 = PI/(m+1);
-  double drawStep = 0.01;
-  double theta = 0;
-  double phi = 0;
-  double t;
-  int i1 = 0;
-  int i2 = 0;
+  double t, theta = 0, phi = 0;
+  int i1 = 0, i2 = 0;
 
   double x1, y1, z1;
   double x2, y2, z2;
   double x3, y3;
   double x4, y4;
+
+  // whole sphere
   glBegin(GL_QUAD_STRIP);
-     for (theta = 0; theta <= 2; theta += step1) {
+  // outer loop (from bottom to top)
+     for (theta = 0; theta < PI / 2 ; theta += step1) {
         z1 = r * cos(theta);
         z2 = r * cos(theta + step1);
-         if (i1 == 0) {
+        if (i1 == 0) {
             i1 = 1;
           } else {
             i1 = 0;
           }
-        for (phi = 0; phi <= 2 * PI; phi += step2) {
+        // inner loop (creates the one "ring" (to rule them all))
+        for (phi = 0; phi <= 2 * PI + step2; phi += step2) {
           if (i1 == 0) {
-            glColor3d(1.0, 0.0, 0.0);
+            glColor3d(1.0, 1.0, 0.0);
             i1 = 1;
           } else {
             glColor3d(1.0, 0.2, 1.0);
             i1 = 0;
           }
+          // upper left
           x1 = r * cos(phi) * sin(theta);
           y1 = r * sin(theta) * sin(phi);
+          // lower left
           x2 = r * cos(phi) * sin(theta+step1);
           y2 = r * sin(theta+step1) * sin(phi);
-          x3 = r * cos(phi+step2) * sin(theta);
-          y3 = r * sin(theta) * sin(phi+step2);
-          x4 = r * cos(phi+step2) * sin(theta+step1);
-          y4 = r * sin(theta+step1) * sin(phi+step2);
+
           glVertex3d(x1, y1, z1);
           glVertex3d(x2, y2, z2);
-          glVertex3d(x3, y3, z1);
-          glVertex3d(x4, y4, z2);
         }
      }
   glEnd();
@@ -83,7 +80,7 @@ void iscrtaj(void) {
   osi(20.0);
   
   glTranslated(d, d, d);
-  sphere(5, 10, 20);
+  half_sphere(5, 15, 20);
 
   glutSwapBuffers();
 } // iscrtaj

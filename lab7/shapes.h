@@ -137,7 +137,7 @@ void sphere(double r, int m, int n) {
   // outer loop (from bottom to top)
      for (theta = 0; theta <= PI; theta += step1) {
         z1 = r * cos(theta);
-        z2 = r * cos(theta + step1);
+        z2 = -r * cos(theta + step1);
          if (i1 == 0) {
             i1 = 1;
           } else {

@@ -42,7 +42,7 @@ void iscrtaj(void) {
   // half_sphere on first hand
   glPushMatrix();
     glTranslated(0.0, 0.0, cylinder_hand_length + sphere_radius - 0.05);
-    glRotated(270, 0.0, 1.0, 0.0);
+    glRotated(90, 0.0, 1.0, 0.0);
     half_sphere(sphere_radius, 10, 10);
   glPopMatrix();
   glRotated(120, 0.0, 1.0, 0.0);
@@ -50,7 +50,7 @@ void iscrtaj(void) {
   // half_sphere on second hand
   glPushMatrix();
     glTranslated(0.0, 0.0, cylinder_hand_length + sphere_radius - 0.05);
-    glRotated(270, 0.0, 1.0, 0.0);
+    glRotated(90, 0.0, 1.0, 0.0);
     half_sphere(sphere_radius, 10, 10);
   glPopMatrix();
   glRotated(120, 0.0, 1.0, 0.0);
@@ -58,7 +58,7 @@ void iscrtaj(void) {
   // half_sphere on thirdss hand
   glPushMatrix();
     glTranslated(0.0, 0.0, cylinder_hand_length + sphere_radius - 0.05);
-    glRotated(270, 0.0, 1.0, 0.0);
+    glRotated(90, 0.0, 1.0, 0.0);
     half_sphere(sphere_radius, 10, 10);
   glPopMatrix();
 
@@ -100,7 +100,7 @@ int main(int argc, char** argv) {
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB);
 
   glutInitWindowSize(800, 600);
-  glutCreateWindow("polikocka");
+  glutCreateWindow("anemometer");
 
   glShadeModel(GL_FLAT);
   glClearColor(0.0, 0.0, 0.0, 0.0);
