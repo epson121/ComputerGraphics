@@ -8,7 +8,7 @@
 float bijelo[] = {1.0f, 1.0f, 1.0f, 1.0f};
 float crno[] = {0.0f, 0.0f, 0.0f, 1.0f};
 float smedje[] = {238.0f / 255.0f, 154.0f / 255.0f, 73.0f / 255.0f};
-float crveno[] = {255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f};
+float crveno[] = {200.0f / 200.0f, 0.0f / 255.0f, 0.0f / 255.0f};
 
 
 double kut = 0.0;
@@ -201,7 +201,7 @@ void iscrtaj(void) {
 
     glPushMatrix(); // pamtimo da smo u ishodištu
     // postavljamo svjetlo 0 na odgovarajuću poziciju
-    glTranslated(-8.0, 20.0, 3.0);
+    glTranslated(0.0, 30.0, 20.0);
     svjetlo0();
     // položaj svjetla 0 označit ćemo bijelom kockicom
     glMaterialfv(GL_FRONT, GL_EMISSION, bijelo);
@@ -304,7 +304,7 @@ int main(int argc, char** argv) {
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB);
 
   glutInitWindowSize(640, 480);
-  glutCreateWindow("Lstozac");
+  glutCreateWindow("Anemometer");
 
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
