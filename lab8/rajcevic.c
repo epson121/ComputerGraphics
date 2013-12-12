@@ -11,7 +11,7 @@ float smedje[] = {238.0f / 255.0f, 154.0f / 255.0f, 73.0f / 255.0f};
 float crveno[] = {200.0f / 200.0f, 0.0f / 255.0f, 0.0f / 255.0f};
 float plavo[] = {0.0f / 200.0f, 0.0f / 255.0f, 255.0f / 255.0f};
 float smjer_snopa[] = {0.0f, 0.0f, -1.0f};
-float phi = 15.0; 
+float phi = 1.0; 
 
 
 
@@ -186,7 +186,7 @@ void half_sphere(double r, int m, int n) {
 
 void svjetlo0() {
   float pozicija[] = {0.0f, 0.0f, 0.0f, 1.0f};
-  float pozicija2[] = {0.0f, 0.0f, 10.0f, 0.0f};
+  float pozicija2[] = {0.0f, 0.0f, 1.0f, 0.0f};
   // četvrti parametar postavljen na 1.0f definira "positional light"
   // na poziciji koju određuju prva tri parametra
 
@@ -196,9 +196,9 @@ void svjetlo0() {
 
   glLightfv(GL_LIGHT1, GL_DIFFUSE, bijelo);
   glLightfv(GL_LIGHT1, GL_SPECULAR, bijelo);
+  glLightfv(GL_LIGHT1, GL_POSITION, pozicija2);
   glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, smjer_snopa);
   glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, phi);
-  glLightfv(GL_LIGHT1, GL_POSITION, pozicija2);
   
 } // svjetlo0
 
