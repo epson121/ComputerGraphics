@@ -1,4 +1,4 @@
-// Lstozac.c // Ivan Hip // 2011-11-21 // 2013-12-02
+// Lstozac.c // Luka Rajcevic // 2011-11-21 // 2013-12-02
 
 #include <stdlib.h>
 #include <math.h>
@@ -146,7 +146,7 @@ void half_sphere(double r, int m, int n) {
 
   // whole sphere
   glBegin(GL_QUAD_STRIP);
-  // outer loop (from bottom to top)
+  // outer loop (from bottom to top)cd 
      for (theta = 0; theta < PI / 2 ; theta += step1) {
         z1 = r * cos(theta);
         z2 = r * cos(theta + step1);

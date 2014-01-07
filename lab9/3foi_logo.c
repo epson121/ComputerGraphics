@@ -1,4 +1,4 @@
-// Lstozac.c // Ivan Hip // 2011-11-21 // 2013-12-02
+// Lstozac.c // Luka Rajcevic // 2011-11-21 // 2013-12-02
 
 #include <stdlib.h>
 #include <math.h>
@@ -164,10 +164,6 @@ void iscrtaj(void) {
     kocka(cubeSize);
   glPopMatrix();
 
-
-
-
-
   glutSwapBuffers();
 } // iscrtaj
 
@@ -195,7 +191,6 @@ void tipka(unsigned char c, int x, int y) {
   if(c == 'S') { py -= 1; }
   if(c == 'w') { pz += 1; }
   if(c == 'W') { pz -= 1; }
-
 } // tipka
 
 void SpecialInput(int key, int x, int y)
