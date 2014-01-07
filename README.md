@@ -12,4 +12,5 @@ University course about computer graphics. It includes various topics, starting 
 * added W4 code (Camera perspective, camera rotation around 3D objects)
 * added W5 code (cone, cyllinder, sphere draw and rotation)
 * added practice code for first midterm
-* added 27 code
+* added W7 code
+* added W8, W9 code + W10 (fractal geometry)
