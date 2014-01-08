@@ -92,76 +92,79 @@ void iscrtaj(void) {
     kocka(0.5);
   glPopMatrix(); // vraćamo se u ishodište
   
-  double cubeSize = 4.0;
+  double cubeSize = 2.5;
   // letter F (base)
   glRotated(kx, 1.0, 0.0, 0.0);
   glRotated(ky, 0.0, 1.0, 0.0);
   glRotated(kz, 0.0, 0.0, 1.0);
   glPushMatrix();
-    int i;
-    for (i = 0; i < 5; i++) {
-      if (i % 2 == 0)
-        glMaterialfv(GL_FRONT, GL_EMISSION, crveno1);
-      else
-        glMaterialfv(GL_FRONT, GL_EMISSION, crveno2);
-      kocka(cubeSize);
-      glTranslated(0.0, 0.0, cubeSize);
-    }
-    glTranslated(0.0, cubeSize/3, 0.0);
-    kocka(cubeSize);
-    glTranslated(0.0, cubeSize, cubeSize/6);
-    kocka(cubeSize);
-  glPopMatrix();
-
-  // letter F strikethrough
-  glPushMatrix();
-    glTranslated(0.0, cubeSize, cubeSize*3);
-    kocka(cubeSize);
-    glTranslated(0.0, -cubeSize*2, 0.0);
-    kocka(cubeSize);
-  glPopMatrix();
-
-
-  //letter O
-  glPushMatrix();
-    glTranslated(0.0, 4*cubeSize, 0.0);
-    kocka(cubeSize);
-    glTranslated(0.0, cubeSize, cubeSize);
-    kocka(cubeSize);
-
-    // orange part
+    glTranslated(-4*cubeSize, -0.5 * cubeSize, 0.0);
     glPushMatrix();
-      glMaterialfv(GL_FRONT, GL_EMISSION, orange);
-      glTranslated(0.0, -cubeSize*0.8, cubeSize*0.2);
-      kocka(cubeSize*0.7);
-      glTranslated(0.0, 0.0, cubeSize*0.7);
-      kocka(cubeSize*0.7);
-    glPopMatrix();
-    
-    glMaterialfv(GL_FRONT, GL_EMISSION, crveno1);
-    glTranslated(0.0, 0.0, cubeSize);
-    kocka(cubeSize);
-    glTranslated(0.0, -cubeSize, cubeSize);
-    kocka(cubeSize);
-    glTranslated(0.0, -cubeSize, -cubeSize);
-    kocka(cubeSize);
-    glTranslated(0.0, 0.0, -cubeSize);
-    kocka(cubeSize);
-  glPopMatrix();
-
-  glPushMatrix();
-    glTranslated(0.0, 7*cubeSize, 0.0);
-    i = 0;
-    for (i = 0; i < 4; i++) {
-       if (i % 2 == 0)
-        glMaterialfv(GL_FRONT, GL_EMISSION, crveno1);
-      else
-        glMaterialfv(GL_FRONT, GL_EMISSION, crveno2);
+      int i;
+      for (i = 0; i < 5; i++) {
+        if (i % 2 == 0)
+          glMaterialfv(GL_FRONT, GL_EMISSION, crveno1);
+        else
+          glMaterialfv(GL_FRONT, GL_EMISSION, crveno2);
+        kocka(cubeSize);
+        glTranslated(0.0, 0.0, cubeSize);
+      }
+      glTranslated(0.0, cubeSize/3, 0.0);
       kocka(cubeSize);
+      glTranslated(0.0, cubeSize, cubeSize/6);
+      kocka(cubeSize);
+    glPopMatrix();
+
+    // letter F strikethrough
+    glPushMatrix();
+      glTranslated(0.0, cubeSize, cubeSize*3);
+      kocka(cubeSize);
+      glTranslated(0.0, -cubeSize*2, 0.0);
+      kocka(cubeSize);
+    glPopMatrix();
+
+
+    //letter O
+    glPushMatrix();
+      glTranslated(0.0, 4*cubeSize, 0.0);
+      kocka(cubeSize);
+      glTranslated(0.0, cubeSize, cubeSize);
+      kocka(cubeSize);
+
+      // orange part
+      glPushMatrix();
+        glMaterialfv(GL_FRONT, GL_EMISSION, orange);
+        glTranslated(0.0, -cubeSize*0.8, cubeSize*0.2);
+        kocka(cubeSize*0.7);
+        glTranslated(0.0, 0.0, cubeSize*0.7);
+        kocka(cubeSize*0.7);
+      glPopMatrix();
+      
+      glMaterialfv(GL_FRONT, GL_EMISSION, crveno1);
       glTranslated(0.0, 0.0, cubeSize);
-    }
-    glTranslated(0.0, 0.0, cubeSize);
-    kocka(cubeSize);
+      kocka(cubeSize);
+      glTranslated(0.0, -cubeSize, cubeSize);
+      kocka(cubeSize);
+      glTranslated(0.0, -cubeSize, -cubeSize);
+      kocka(cubeSize);
+      glTranslated(0.0, 0.0, -cubeSize);
+      kocka(cubeSize);
+    glPopMatrix();
+
+    glPushMatrix();
+      glTranslated(0.0, 7*cubeSize, 0.0);
+      i = 0;
+      for (i = 0; i < 4; i++) {
+         if (i % 2 == 0)
+          glMaterialfv(GL_FRONT, GL_EMISSION, crveno1);
+        else
+          glMaterialfv(GL_FRONT, GL_EMISSION, crveno2);
+        kocka(cubeSize);
+        glTranslated(0.0, 0.0, cubeSize);
+      }
+      glTranslated(0.0, 0.0, cubeSize);
+      kocka(cubeSize);
+    glPopMatrix();
   glPopMatrix();
 
   glutSwapBuffers();
