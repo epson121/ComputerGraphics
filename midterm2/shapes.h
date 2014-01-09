@@ -302,3 +302,70 @@ void elliptic_cylinder(double a, double b, double h, int n) {
     }
   glEnd(); 
 }
+
+void cuboid(double a, double b, double c) {
+  glBegin(GL_QUADS);
+    glNormal3d(0.0, 0.0, -1.0);
+    glVertex3d(0.0, 0.0, 0.0); glVertex3d(0.0, b, 0.0);
+    glVertex3d(a, b, 0.0); glVertex3d(a, 0.0, 0.0);
+
+    glNormal3d(0.0, 0.0, 1.0);
+    glVertex3d(0.0, 0.0, c); glVertex3d(a, 0.0, c);
+    glVertex3d(a, b, c); glVertex3d(0.0, b, c);
+  glEnd();
+
+  glBegin(GL_QUAD_STRIP);
+    glNormal3d(0.0, -1.0, 0.0);
+    glVertex3d(0.0, 0.0, c); glVertex3d(0.0, 0.0, 0.0);
+    glVertex3d(a, 0.0, c); glVertex3d(a, 0.0, 0.0);
+
+    glNormal3d(1.0, 0.0, 0.0);    
+    glVertex3d(a, b, c); glVertex3d(a, b, 0.0);
+
+    glNormal3d(0.0, 1.0, 0.0);
+    glVertex3d(0.0, b, c); glVertex3d(0.0, b, 0.0);
+
+    glNormal3d(-1.0, 0.0, 0.0);
+    glVertex3d(0.0, 0.0, c); glVertex3d(0.0, 0.0, 0.0);
+  glEnd();
+}
+
+void valjak2(double a, double b, double h, int n) {
+  double t;
+  int i;
+
+  // baza stošca
+  glBegin(GL_TRIANGLE_FAN);
+    glNormal3d(0.0, 0.0, 1.0); // normala je u smjeru -z za sve trokute
+    glVertex3d(0.0, 0.0, 0.0); // središte baze je u ishodištu
+    t = 0.0;
+    for(i = 0; i <= n; i++) {
+      //glNormal3d(cos(t), sin(t), 0.0);
+      glVertex3d(a * cos(t), b * sin(t), 0.0);
+      t += 2.0 * M_PI / n;
+    }
+  glEnd();
+
+  // plašt valjka
+  glBegin(GL_QUAD_STRIP);
+    t = 2.0 * M_PI;
+    for(i = 0; i <= n; i++) {
+      glNormal3d(-cos(t), -sin(t), -1); // normale u xy ravnini - od središta
+      glVertex3d(a * cos(t), b * sin(t), h);
+      glNormal3d(-cos(t), -sin(t), 0.0);
+      glVertex3d(a * cos(t), b * sin(t), 0.0);
+      t -= 2.0 * M_PI / n;
+    }
+  glEnd();
+
+  glBegin(GL_TRIANGLE_FAN);
+    glNormal3d(0.0, 0.0, 1.0); // normala je u smjeru -z za sve trokute
+    glVertex3d(0.0, 0.0, h); // središte baze je u ishodištu na visin h
+    t = 0.0;
+    for(i = 0; i <= n; i++) {
+      //glNormal3d(cos(t), sin(t), 1.0);
+      glVertex3d(a * cos(t), b * sin(t), h);
+      t += 2.0 * M_PI / n;
+    }
+  glEnd();
+}
