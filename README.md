@@ -14,3 +14,5 @@ University course about computer graphics. It includes various topics, starting 
 * added practice code for first midterm
 * added W7 code
 * added W8, W9 code + W10 (fractal geometry)
+* added practice code for second midterm
+* added source and website for the final project
